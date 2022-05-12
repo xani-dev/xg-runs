@@ -1,7 +1,10 @@
-const Input = (props) => {
+import '../Styles/InputForm.css'
+
+
+const InputForm = (props) => {
   return (
     <>
-      <button type="button">Add record</button>
+     
       <div className="login-box">
         <h2>My Run Today :</h2>
 
@@ -30,14 +33,14 @@ const Input = (props) => {
             <input type="datetime-local" name="date" id="date" />
             <label>Date:</label>
           </div>
-          <a >
+          <a>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             Go! 🏃‍♀️
           </a>
-          <a >
+          <a>
             <span></span>
             <span></span>
             <span></span>
@@ -50,4 +53,4 @@ const Input = (props) => {
   );
 };
 
-export default Input;
+export default InputForm;
