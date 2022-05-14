@@ -1,6 +1,6 @@
 import { useState } from "react";
 import RunForm from "./RunForm";
-import '../Styles/AddRunButton.css'
+import "../Styles/AddRunButton.css";
 
 const NewRun = (props) => {
   const [inEditMode, setInEditMode] = useState(false);
@@ -9,7 +9,7 @@ const NewRun = (props) => {
     const runData = {
       ...enteredRunData,
     };
-    console.log(runData);
+    console.log(runData, "from New Run");
   };
 
   const startEditingHandler = () => {

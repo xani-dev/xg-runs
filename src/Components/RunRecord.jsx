@@ -8,7 +8,7 @@ const RunRecord = (props) => {
   //   console.log('delete')
   // }
   // useState();
-
+props.onAddRun();
   return (
     <>
       <tbody>

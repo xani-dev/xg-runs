@@ -40,6 +40,11 @@ const RunTable = (props) => {
     },
   ];
 
+  const addRunHandler = run => {
+    console.log('inside run table now', runs);
+  }
+
+
   return (
     <>
       <div className="table-container">
@@ -54,7 +59,9 @@ const RunTable = (props) => {
               {/* <th>Delete</th> */}
             </tr>
           </thead>
-          <RunRecord runsData={runs} />
+          <RunRecord 
+          onAddRun={addRunHandler}
+          runsData={runs} />
         </table>
       </div>
     </>

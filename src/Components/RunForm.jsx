@@ -33,7 +33,7 @@ const RunForm = (props) => {
       pace: runPace,
       bpm: runBPM,
     };
-    console.log(runData);
+    props.onSaveRunData(runData);
     setRunDate('');
     setRunType('');
     setRunPace('');

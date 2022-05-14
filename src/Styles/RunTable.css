@@ -1,11 +1,13 @@
 .table-container {
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap:wrap ;
+    gap: 1rem;
+    margin: auto;
+    padding: auto;
+    text-align: center;
   }
   table {
-    width: 600px;
+    width: 100%;
     text-align: center;
     border-collapse: collapse;
     overflow: hidden;
@@ -14,7 +16,7 @@
   }
 
   thead th {
-    padding: 15px;
+    padding: 1rem;
     background-color: #7f5a83;
     color: #0d314d;
   }

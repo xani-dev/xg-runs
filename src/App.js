@@ -6,8 +6,9 @@ import RunTable from "./Components/RunTable";
 function App() {
   return (
     <div className="App">
-      <RunTable />
+      
       <NewRun />
+      <RunTable />
     </div>
   );
 }
