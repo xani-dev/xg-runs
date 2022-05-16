@@ -9,7 +9,7 @@ const NewRun = (props) => {
     const runData = {
       ...enteredRunData,
     };
-    console.log(runData, "from New Run");
+    props.onAddRun(runData);
   };
 
   const startEditingHandler = () => {

@@ -58,9 +58,9 @@ const RunForm = (props) => {
           <div className="user-box">
             <select value={runType} id="run-type" name="run-type" onChange={runTypeHandler}>
             <option value="" disabled selected hidden>Select Run Type</option>
-              <option value="recovery">Recovery Run</option>
-              <option value="speed">Speed Run</option>
-              <option value="long">Long Run</option>
+              <option value="Recovery">Recovery Run</option>
+              <option value="Speed">Speed Run</option>
+              <option value="Long Run">Long Run</option>
             </select>
             <label>Run Type</label>
           </div>

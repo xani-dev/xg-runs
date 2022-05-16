@@ -4,11 +4,11 @@ import "../Styles/RunRecord.css";
 const RunRecord = (props) => {
   const dateOptions = { month: "long", day: "numeric", year: "numeric" };
 
-  // const deleteHandler = () => {
-  //   console.log('delete')
-  // }
+  const deleteHandler = () => {
+    console.log('delete')
+    
+  }
   // useState();
-props.onAddRun();
   return (
     <>
       <tbody>
@@ -19,7 +19,7 @@ props.onAddRun();
             <td>{run.pace}</td>
             <td>{run.bpm}</td>
             <td>{run.weather}</td>
-            {/* <td onClick={deleteHandler}>x</td> */}
+            <td onClick={deleteHandler}>x</td>
           </tr>
         ))}
       </tbody>
