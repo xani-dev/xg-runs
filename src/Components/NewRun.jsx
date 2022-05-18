@@ -9,6 +9,7 @@ const NewRun = (props) => {
     const runData = {
       ...enteredRunData,
     };
+    //console.log(props.onAddRun)
     props.onAddRun(runData);
   };
 

@@ -12,6 +12,7 @@ const DUMMY_RUNS  = [
     pace: "10'20\"",
     bpm: 159,
     weather: "☁️",
+    id: 0
   },
   {
     date: new Date(2022, 4, 2),
@@ -19,13 +20,15 @@ const DUMMY_RUNS  = [
     pace: "10'01\"",
     bpm: 168,
     weather: "☀️",
+    id: 1
   },
   {
     date: new Date(2022, 4, 4),
     type: "Speed",
     pace: "9'40\"",
     bpm: 163,
-    weather: "🌧️<",
+    weather: "🌧️",
+    id: 2
   },
   {
     date: new Date(2022, 4, 7),
@@ -40,17 +43,28 @@ const DUMMY_RUNS  = [
     pace: "9'33\"",
     bpm: 176,
     weather: "🌤️",
+    id: 3
   },
 ];
-const RunTable = (props) => {
-
+const RunTable = () => {
   const [runs, setRuns] = useState(DUMMY_RUNS);
 
-  const addRunHandler = run => {
+  const addRunHandler = (run) => {
     setRuns((prevRuns)=> {
       return [run, ...prevRuns]
     });
   };
+
+  const deleteRunHandler = (index) => {
+    let runIndex = index.target.id;
+    let runsCopy = [...runs]
+    runsCopy.splice(runIndex, 1);
+    setRuns(runsCopy);
+    console.log('original array: ',runs)
+    console.log('row selected:', runIndex);
+    console.log('new array: ', runsCopy)
+  }
+
 
   return (
     <>
@@ -68,7 +82,7 @@ const RunTable = (props) => {
             </tr>
           </thead>
           <RunRecord 
-          runsData={runs} />
+          runsData={runs} onDeleteRun={deleteRunHandler}/>
         </table>
       </div>
     </>

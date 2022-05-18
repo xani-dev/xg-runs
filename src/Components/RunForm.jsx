@@ -33,12 +33,15 @@ const RunForm = (props) => {
       pace: runPace,
       bpm: runBPM,
     };
+   // console.log(props.onSaveRunData)
     props.onSaveRunData(runData);
+
     setRunDate('');
     setRunType('');
     setRunPace('');
     setRunBPM('');
   };
+
   return (
     <>
       <div className="login-box">

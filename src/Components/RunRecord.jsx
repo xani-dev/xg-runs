@@ -1,14 +1,12 @@
-// import useState from "react";
+
 
 import "../Styles/RunRecord.css";
+
+
+
 const RunRecord = (props) => {
   const dateOptions = { month: "long", day: "numeric", year: "numeric" };
 
-  const deleteHandler = () => {
-    console.log('delete')
-    
-  }
-  // useState();
   return (
     <>
       <tbody>
@@ -19,7 +17,7 @@ const RunRecord = (props) => {
             <td>{run.pace}</td>
             <td>{run.bpm}</td>
             <td>{run.weather}</td>
-            <td onClick={deleteHandler}>x</td>
+            <td id={index} onClick={props.onDeleteRun}>x</td>
           </tr>
         ))}
       </tbody>
