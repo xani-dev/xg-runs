@@ -2,6 +2,8 @@ import { useState } from "react";
 import RunForm from "./RunForm";
 import "../Styles/AddRunButton.css";
 
+
+
 const NewRun = (props) => {
   const [inEditMode, setInEditMode] = useState(false);
 
@@ -11,6 +13,7 @@ const NewRun = (props) => {
     };
     //console.log(props.onAddRun)
     props.onAddRun(runData);
+    setInEditMode(false);
   };
 
   const startEditingHandler = () => {

@@ -1,6 +1,5 @@
 import "../src/Styles/App.css";
 
-
 import RunTable from "./Components/RunTable";
 
 function App() {

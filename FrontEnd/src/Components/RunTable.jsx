@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import NewRun from "../Components/NewRun";
 import RunRecord from "./RunRecord";
 
 import "../Styles/RunTable.css";
 
-const DUMMY_RUNS  = [
+import { getRuns, newRun, deleteRun } from "../api/API";
+
+const DUMMY_RUNS = [
   {
     date: new Date(2022, 4, 1),
     type: "Recovery",
     pace: "10'20\"",
     bpm: 159,
     weather: "☁️",
-    id: 0
+    id: 0,
   },
   {
     date: new Date(2022, 4, 2),
@@ -20,7 +22,7 @@ const DUMMY_RUNS  = [
     pace: "10'01\"",
     bpm: 168,
     weather: "☀️",
-    id: 1
+    id: 1,
   },
   {
     date: new Date(2022, 4, 4),
@@ -28,7 +30,7 @@ const DUMMY_RUNS  = [
     pace: "9'40\"",
     bpm: 163,
     weather: "🌧️",
-    id: 2
+    id: 2,
   },
   {
     date: new Date(2022, 4, 7),
@@ -43,32 +45,49 @@ const DUMMY_RUNS  = [
     pace: "9'33\"",
     bpm: 176,
     weather: "🌤️",
-    id: 3
+    id: 3,
   },
 ];
 const RunTable = () => {
-  const [runs, setRuns] = useState(DUMMY_RUNS);
+  const [allRuns, setAllRuns] = useState(DUMMY_RUNS);
 
-  const addRunHandler = (run) => {
-    setRuns((prevRuns)=> {
-      return [run, ...prevRuns]
+  const fetchRuns = async () => {
+    const res = await getRuns();
+    if (res === undefined) {
+      setAllRuns(DUMMY_RUNS);
+    } else {
+      setAllRuns(res);
+    }
+    console.log(res);
+  };
+
+  useEffect(() => {
+    fetchRuns();
+  }, []);
+
+  const addRunHandler = async (run) => {
+    const res = await newRun(run);
+    //Is it newRun(run) or res??
+    setAllRuns((prevRuns) => {
+      return [run, ...prevRuns];
     });
   };
 
-  const deleteRunHandler = (index) => {
-    let runIndex = index.target.id;
-    let runsCopy = [...runs]
-    runsCopy.splice(runIndex, 1);
-    setRuns(runsCopy);
-    console.log('original array: ',runs)
-    console.log('row selected:', runIndex);
-    console.log('new array: ', runsCopy)
-  }
+  const deleteRunHandler = async (index) => {
+    const res = await deleteRun(index);
 
+    let runIndex = index.target.id;
+    let runsCopy = [...allRuns];
+    runsCopy.splice(runIndex, 1);
+    setAllRuns(runsCopy);
+    console.log("original array: ", allRuns);
+    console.log("row selected:", runIndex);
+    console.log("new array: ", runsCopy);
+  };
 
   return (
     <>
-    <NewRun onAddRun={addRunHandler}/>
+      <NewRun onAddRun={addRunHandler} />
       <div className="table-container">
         <table>
           <thead>
@@ -81,8 +100,7 @@ const RunTable = () => {
               <th>Delete</th>
             </tr>
           </thead>
-          <RunRecord 
-          runsData={runs} onDeleteRun={deleteRunHandler}/>
+          <RunRecord runsData={allRuns} onDeleteRun={deleteRunHandler} />
         </table>
       </div>
     </>
