@@ -13,9 +13,10 @@ Displays a table showing all previous records with Location, a Weather Icon base
 
 Info can be added using the form provided and records can be deleted, if needed. 
 
+## Demo
+
 ![Run Tracker Demo](https://user-images.githubusercontent.com/71361700/177402988-28113503-cb6b-4b52-b458-1bd75e1e7ef2.gif)
 
-Weather Icons are from [Erik Flowers](https://erikflowers.github.io/)
 
 ## How to Run: 
 In order to run this project, you must update the Accuweather API Access Token with your own on your .env file along with your Firestore Keys.
@@ -37,6 +38,8 @@ REACT_APP_WEATHER_API_KEY = 'YOUR-API-CODE-HERE'
 - React
 - HTML, CSS
 - Javascript
+- Weather Icons are from [Erik Flowers](https://erikflowers.github.io/)
+
 ## License information: 
 
 [MIT](https://choosealicense.com/licenses/mit/)
