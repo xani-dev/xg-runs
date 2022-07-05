@@ -13,7 +13,7 @@ Displays a table showing all previous records with Location, a Weather Icon base
 
 Info can be added using the form provided and records can be deleted, if needed. 
 
-![Run Tracker Demo]()
+![Run Tracker Demo](![xg-runs-demo](https://user-images.githubusercontent.com/71361700/177402988-28113503-cb6b-4b52-b458-1bd75e1e7ef2.gif)
 
 Weather Icons are from [Erik Flowers](https://erikflowers.github.io/)
 
