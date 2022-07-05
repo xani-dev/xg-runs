@@ -14,7 +14,7 @@ const DUMMY_RUNS = [
     pace: "10'20\"",
     bpm: 159,
     weather: "☁️",
-    id: 0,
+    id: 999,
   },
   {
     date: new Date(2022, 4, 2),
@@ -66,23 +66,25 @@ const RunTable = () => {
   }, []);
 
   const addRunHandler = async (run) => {
-    const res = await newRun(run);
-    //Is it newRun(run) or res??
+    await newRun(run);
     setAllRuns((prevRuns) => {
       return [run, ...prevRuns];
     });
   };
 
-  const deleteRunHandler = async (index) => {
-    const res = await deleteRun(index);
+  const deleteRunHandler = async (event) => {
 
-    let runIndex = index.target.id;
+    //  DB functions
+    let runID = event.target.id;
+    await deleteRun(runID);
+
+    // UI functions
+    const runIndex = allRuns.findIndex(run => {
+       return run.id === runID;
+    });
     let runsCopy = [...allRuns];
     runsCopy.splice(runIndex, 1);
     setAllRuns(runsCopy);
-    console.log("original array: ", allRuns);
-    console.log("row selected:", runIndex);
-    console.log("new array: ", runsCopy);
   };
 
   return (
@@ -93,6 +95,7 @@ const RunTable = () => {
           <thead>
             <tr>
               <th>Date</th>
+              <th>Location</th>
               <th>Run Type</th>
               <th>Pace</th>
               <th>Avg. BPM</th>

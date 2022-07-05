@@ -1,11 +1,17 @@
 import { useState } from "react";
 import "../Styles/RunForm.css";
 
+import { getCity, getCurrentWeather } from "../api/Weather";
+
 const RunForm = (props) => {
   const [runDate, setRunDate] = useState("");
   const [runType, setRunType] = useState("");
   const [runPace, setRunPace] = useState("");
   const [runBPM, setRunBPM] = useState("");
+  const [runLocation, setRunLocation] = useState("");
+
+  const [runWeather, setRunWeather] = useState("");
+  const [runCity, setRunCity] = useState("");
 
   const runDateHandler = (event) => {
     setRunDate(event.target.value);
@@ -23,23 +29,42 @@ const RunForm = (props) => {
     setRunBPM(event.target.value);
   };
 
+  const runLocationHandler = (event) => {
+    setRunLocation(event.target.value);
+  };
+
+  const cityValidation = async (event) => {
+    const cityData = await getCity(event.target.value);
+    console.log("hello from" , cityData.LocalizedName, cityData.Key);
+    setRunCity(cityData.LocalizedName)
+
+    const runWeatherHandler = await getCurrentWeather(cityData.Key);
+    console.log(runWeatherHandler);
+    setRunWeather(runWeatherHandler.WeatherIcon)
+  };
+
+  
+
   const submitHandler = (event) => {
-   
     event.preventDefault();
-   
+    // if(!runLocation)return
     const runData = {
       date: new Date(runDate),
       type: runType,
       pace: runPace,
       bpm: runBPM,
+      location: runLocation,
+      city: runCity,
+      weather: runWeather,
     };
-   // console.log(props.onSaveRunData)
     props.onSaveRunData(runData);
 
-    setRunDate('');
-    setRunType('');
-    setRunPace('');
-    setRunBPM('');
+    setRunDate("");
+    setRunType("");
+    setRunPace("");
+    setRunBPM("");
+    setRunLocation("");
+    setRunCity("");
   };
 
   return (
@@ -50,7 +75,19 @@ const RunForm = (props) => {
         <form onSubmit={submitHandler}>
           <div className="user-box">
             <input
-              type="datetime-local"
+              type="text"
+              value={runLocation}
+              name="location"
+              id="location"
+              placeholder="Where did you run today?"
+              onChange={runLocationHandler}
+              onBlur={cityValidation}
+            />
+            <label>Location</label>
+          </div>
+          <div className="user-box">
+            <input
+              type="date"
               value={runDate}
               name="date"
               id="date"
@@ -59,8 +96,15 @@ const RunForm = (props) => {
             <label>Date:</label>
           </div>
           <div className="user-box">
-            <select value={runType} id="run-type" name="run-type" onChange={runTypeHandler}>
-            <option value="" disabled selected hidden>Select Run Type</option>
+            <select
+              value={runType}
+              id="run-type"
+              name="run-type"
+              onChange={runTypeHandler}
+            >
+              <option value="" disabled selected hidden>
+                Select Run Type
+              </option>
               <option value="Recovery">Recovery Run</option>
               <option value="Speed">Speed Run</option>
               <option value="Long Run">Long Run</option>
